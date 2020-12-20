@@ -1,0 +1,14 @@
+# set super user level permissions
+sudo: required
+
+# pass information that we need a copy of docker ready to go
+services
+  - docker
+
+# build docker image out of Dockerfile.dev
+  before_install:
+    - docker build -t jak.szkudlarek/docker-react -f Dockerfile.dev .
+
+# run our test suit. If error code is different than 0 then it throws an error
+script:
+  - docker run jak.szkudlarek/docker-react npm run test -- --coverage
