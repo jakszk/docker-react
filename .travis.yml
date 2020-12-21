@@ -1,3 +1,5 @@
+language: generic
+
 # set super user level permissions
 sudo: required
 
@@ -11,4 +13,4 @@ services
 
 # run our test suit. If error code is different than 0 then it throws an error
 script:
-  - docker run jak.szkudlarek/docker-react npm run test -- --coverage
+  - docker run -e CI=true jak.szkudlarek/docker-react npm run test
